@@ -22,36 +22,36 @@ import br.edu.univas.gabriel.dto.HotelDto;
 import br.edu.univas.gabriel.service.HotelService;
 
 @RestController
-@RequestMapping("/hoteis")
+@RequestMapping("/api")
 public class HotelController {
 	
 	@Autowired
 	private HotelService service;
 	
-	@PostMapping("")
+	@PostMapping("/entidades")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@RequestBody @Valid HotelDto dto) throws ParseException {
 		service.create(dto);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/entidades/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@RequestBody @Valid HotelDto dto, @PathVariable Long id) {
 		service.update(id, dto);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/entidades/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		service.delete(id);
 	}
 	
-	@GetMapping()
+	@GetMapping("/entidades")
 	public List<HotelDto> getAll() {
 		return service.getAll();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/entidades/{id}")
 	public HotelDto getById(@PathVariable Long id) {
 		return service.getById(id);
 	}
